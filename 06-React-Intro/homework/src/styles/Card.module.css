@@ -1,0 +1,29 @@
+.btn {
+    background-color: red;
+    width: 25px;
+    margin: 5px;
+    border-radius: 10px;
+    align-self: flex-end;
+}
+
+.btn:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.middleDiv {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    align-content: center;
+    border: 2px solid gray;
+    border-radius: 10px;
+    height: 280px;
+    justify-content: center;
+}
