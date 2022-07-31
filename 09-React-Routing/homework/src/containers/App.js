@@ -4,6 +4,7 @@ import { About } from "../components/About";
 import './App.css';
 import Nav from '../components/Nav.jsx';
 import Cards from '../components/Cards.jsx';
+import { City } from '../components/City';
 
 
 const apiKey = '4ae2636d8dfbdc3044bede63951a019b';
@@ -15,7 +16,7 @@ function App() {
   }
   function onSearch(ciudad) {
     //Llamado a la API del clima
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric`)
       .then(r => r.json())
       .then((recurso) => {
         if (recurso.main !== undefined) {
@@ -48,21 +49,16 @@ function App() {
   }
   return (
     <div className="App">
-
       <Route
-        path='/'
+        path={'/'}
         render={() => <Nav onSearch={onSearch} />}
       />
       <Route
-        path='/about'
-        component={About}
+        exact path={"/"}
+        render={() => <Cards cities={cities} onClose={onClose}/>}
       />
-      <div>
-        <Cards
-          cities={cities}
-          onClose={onClose}
-        />
-      </div>
+      <Route exact path={"/about"} render={()=><About />}/>
+      <Route path={"/city/:cityId"} render={({match})=><City cityId={onFilter(match.params.cityId)} />} />
       <hr />
     </div>
   );

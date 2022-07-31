@@ -3,7 +3,7 @@ import React from 'react'
 export const About = () => {
   return (
     <div>
-        Me gusta el espagueti
+        by Miqueas Ledesma® Dev 2022
     </div>
   )
 }

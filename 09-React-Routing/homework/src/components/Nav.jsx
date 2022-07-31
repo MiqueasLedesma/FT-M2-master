@@ -20,6 +20,7 @@ function Nav({ onSearch }) {
       <SearchBar
         onSearch={onSearch}
       />
+
     </nav>
   );
 };
