@@ -1,14 +1,28 @@
 import React from 'react';
-import './Validate.jsx'
+
+function validate(input) {
+    let error = {};
+    if (!input.username) {
+        error.username = 'Username is required';
+    } else if (!/\S+@\S+\.\S+/.test(input.username)) {
+        error.username = 'Username is invalid';
+        if (!input.password) {
+            error.password = 'password is required';
+        } else if (!/(?=.*[0-9])/.test(input.password)) {
+            error.password = 'password is invalid';
+        }
+        return error;
+    };
+}
 
 export default function Form() {
 
     const [input, setInput] = React.useState({
         username: '',
-        password: '',
+        password: ''
     });
 
-    const [errors, setErrors] = React.useState({});
+    const [error, setErrors] = React.useState({});
 
     const handleInputChange = function (e) {
         setInput({
@@ -24,19 +38,30 @@ export default function Form() {
     return (
         <form onSubmit={handleInputChange}>
             <div>
-                <br />
                 <label>Username:</label>
-                <input type="text" name='username' onChange={handleInputChange} value={input.username} />
-                {errors.username && (
-                    <p className="danger">{errors.username}</p>
-                )}
+                <input
+                    type="text"
+                    name='username'
+                    onChange={handleInputChange}
+                    value={input.username}
+                    className={error.username && 'danger'} />
+                {
+                    error.username && (<p className="danger">{error.username}</p>)
+                }
                 <div />
-                <br />
                 <div>
                     <label>Password:</label>
-                    <input type="password" name='password' onChange={handleInputChange} value={input.password} />
+                    <input
+                        type="password"
+                        name='password'
+                        onChange={handleInputChange}
+                        value={input.password}
+                        className={error.password && 'danger'}
+                    />
+                    {
+                        error.password && (<p className='danger'>{error.password}</p>)
+                    }
                 </div>
-                <br />
                 <div>
                     <button>Submit</button>
                 </div>
