@@ -16,16 +16,16 @@ export function getMovieDetail(id) {
     }
 }
 
-export function addMovieFavorite(title) {
+export function addMovieFavorite(movie) {
     return {
         type: 'ADD_MOVIE_FAVORITE',
-        payload: title
+        payload: movie
     }
 }
 
 export function removeMovieFavorite(id) {
     return {
         type: 'REMOVE_MOVIE_FAVORITE',
-        id
+        payload : id
     }
 }
